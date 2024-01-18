@@ -13,12 +13,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use App\Http\Controllers\AuthController;
+
+use App\Http\Controllers\PostController;
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 
 
-Route::get('/posts/{post}', function () {
-    echo "web: /post";
-});
+
+
+Route::post('/login', [AuthController::class, 'login']);
+
+
+Route::get('/logout', [AuthController::class, 'logout']);
+
+
+Route::get('/posts/{post}', [PostController::class, 'index']);
+
+
+
+
+// Route::get('/posts/{post}', function () {
+    
+//     $data = ['message' => 'Login successful', 'token' => 'your_access_token'];
+//     $jsonString = json_encode($data);
+
+//     echo $jsonString;
+// });
+
+

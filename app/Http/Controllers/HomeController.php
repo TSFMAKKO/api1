@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,12 +21,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index(Request $request)
+    public function index()
     {
-        // return view('home');
-        $data = ['message' => 'Login successful', 'token' => 'your_access_token','post'=>$request->post];
-        $jsonString = json_encode($data);
-    
-        echo $jsonString;
+        return view('home');
     }
 }
