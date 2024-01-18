@@ -25,8 +25,17 @@ class PostController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
+
+        // 獲取 JSON 字串
+        $col1 = $request->json("col1");
+
+        // 將 JSON 字串轉換為關聯數組
+        // $dataArray = json_decode($jsonString, true);
+
+
+
         // return view('home');
-        $data = ['message' => 'Login successful', 'token' => 'your_access_token', 'post' => $request->post, 'user:' => $user];
+        $data = ['message' => 'Login successful', 'token' => 'your_access_token', 'post' => $request->post, 'user:' => $user, 'col1' => $col1];
         $jsonString = json_encode($data);
 
         echo $jsonString;
