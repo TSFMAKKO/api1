@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PostController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -18,10 +18,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::middleware('auth:sanctum')->get('/posts/{post}', function (\App\Models\Post $post) {
-    return $post;
-});
-
+Route::get('/posts/{post}', [PostController::class, 'index'])->middleware('auth:sanctum');
+// 
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     // 在這裡定義需要認證的 API 路由

@@ -19,7 +19,7 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('login');
 
 
 
@@ -31,7 +31,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 
-Route::get('/posts/{post}', [PostController::class, 'index']);
+// Route::get('/posts/{post}', [PostController::class, 'index']);
 
 
 

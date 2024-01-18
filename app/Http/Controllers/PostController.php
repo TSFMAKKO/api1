@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -13,7 +14,7 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth:sanctum');
     }
 
     /**
@@ -23,10 +24,11 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
+        $user = Auth::user();
         // return view('home');
-        $data = ['message' => 'Login successful', 'token' => 'your_access_token','post'=>$request->post];
+        $data = ['message' => 'Login successful', 'token' => 'your_access_token', 'post' => $request->post, 'user:' => $user];
         $jsonString = json_encode($data);
-    
+
         echo $jsonString;
     }
 }
