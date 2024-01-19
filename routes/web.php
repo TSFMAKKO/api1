@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\OrderPlaced;
 use Illuminate\Support\Facades\Route;
 
 use Illuminate\Support\Facades\DB;
@@ -23,12 +24,34 @@ use App\Http\Controllers\MessageController;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeEmail;
+use App\Models\Post;
+// use App\Events\OrderPlaced;
 
 use App\Http\Controllers\Auth\VerificationController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('login');
+
+Route::get('/listen', function () {
+    
+    $id = Auth::id();
+    $name = User::find($id)->name;
+
+    // $user = Auth::user();
+
+    $post = Post::create([
+        'user_id' => $id,
+        // 其他字段...
+        'content' =>"test111"
+    ]);
+
+    // dd($post);
+    // OrderPlaced::dispatch($post);
+
+    return view('post', compact('id', 'name'));
+});
 
 
 
