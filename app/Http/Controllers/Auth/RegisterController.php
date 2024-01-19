@@ -75,7 +75,7 @@ class RegisterController extends Controller
         // 觸發 Registered 事件，這將自動發送驗證郵件
         // event(new Registered($user));
         // 触发 Registered 事件
-        Event::dispatch(new Registered($user));
+        // Event::dispatch(new Registered($user));
 
         return $user;
     }
