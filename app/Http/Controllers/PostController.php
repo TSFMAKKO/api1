@@ -54,9 +54,11 @@ class PostController extends Controller
     public function index3(Request $request,Post $post)
     {
         // !allows = 拒絕 = denies
-        if(!Gate::allows('view-post', $post)){
-            abort(403);
-        }
+        // if(!Gate::allows('view-post', $post)){
+        //     abort(403);
+        // }
+
+        Gate::authorize('view', $post);
         return $post;
     }
 }

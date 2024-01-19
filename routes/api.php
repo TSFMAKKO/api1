@@ -6,6 +6,8 @@ use App\Http\Controllers\PostController;
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Models\Post;
+use Illuminate\Support\Facades\Gate;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
@@ -24,6 +26,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/posts/{post}', [PostController::class, 'index3'])->middleware('auth:sanctum');
+
+Route::post('/posts', function(){
+    Gate::authorize('create', Post::class);
+
+    return 'OK';  
+})->middleware('auth:sanctum');
 
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
