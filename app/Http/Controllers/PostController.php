@@ -40,4 +40,11 @@ class PostController extends Controller
 
         echo $jsonString;
     }
+
+    public function index2(Request $request)
+    {
+        $user = Auth::user();
+        // echo "user: $user";
+        dump($user);
+    }
 }

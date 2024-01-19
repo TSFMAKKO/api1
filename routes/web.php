@@ -33,6 +33,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 
+Route::get('/test2', [PostController::class, 'index2'])->middleware('auth:sanctum');
+
+
 // Route::get('/posts/{post}', [PostController::class, 'index']);
 
 Route::get('/test', function () {

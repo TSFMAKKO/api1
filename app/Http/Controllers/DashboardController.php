@@ -11,6 +11,10 @@ class DashboardController extends Controller
     
     // use AuthorizesRequests, ValidatesRequests;
     public function index(){
-        echo "dashboard";
+        // echo "dashboard";
+        // return response()->json(['message' => 'Logout successful']);
+        return [
+            "user"=>Auth::user()
+        ];
     }
 }

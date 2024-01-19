@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\DashboardController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +27,12 @@ Route::post('/posts/{post}', [PostController::class, 'index'])->middleware('auth
 
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login2']);
+
+Route::post('/logout2', [AuthController::class, 'logout2'])->middleware('auth:sanctum');
+
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth:sanctum');
 
 // Route::middleware('auth:sanctum')->group(function () {
 //     // 在這裡定義需要認證的 API 路由

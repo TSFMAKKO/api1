@@ -867,7 +867,11 @@
                         @csrf
                         <input type="email" name="email" id="">
                         <input type="password" name="password" id="">
-                        <input type="checkbox" name="remember" id="">
+                        {{-- <input type="checkbox" name="remember" id=""> --}}
+                        <label>
+                            記住我
+                            <input type="checkbox" name="remember">
+                        </label>
                         <button type="submit">提交</button>
                     </form>
                 </div>
