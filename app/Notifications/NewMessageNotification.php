@@ -35,8 +35,12 @@ class NewMessageNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-                    ->line('You have a new message!')
-                    ->action('View Message', url('/message'));
+            // ->subject('自定義主題：你有一條新消息')
+            // ->line('這是新消息的內容。')
+            // ->action('顯示訊息', url('/messages'))
+            // ->line('感謝您使用我們的應用程式！');
+            ->subject('laravel 通知！') // 在這裡修改主題
+            ->markdown('mail.new_message', ['url' => url('/messages')]);
     }
 
     /**
