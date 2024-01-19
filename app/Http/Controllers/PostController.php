@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -46,5 +49,14 @@ class PostController extends Controller
         $user = Auth::user();
         // echo "user: $user";
         dump($user);
+    }
+
+    public function index3(Request $request,Post $post)
+    {
+        // !allows = 拒絕 = denies
+        if(!Gate::allows('view-post', $post)){
+            abort(403);
+        }
+        return $post;
     }
 }
