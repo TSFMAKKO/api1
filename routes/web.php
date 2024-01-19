@@ -24,12 +24,22 @@ use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\WelcomeEmail;
 
+use App\Http\Controllers\Auth\VerificationController;
+
 Route::get('/', function () {
     return view('welcome');
 })->name('login');
 
 
 
+// Route::get('/email/verify', 'Auth\VerificationController@show')->name('verification.notice');
+// Route::get('/email/verify/{id}/{hash}', 'Auth\VerificationController@verify')->name('verification.verify');
+// Route::post('/email/resend', 'Auth\VerificationController@resend')->name('verification.resend');
+
+
+Route::get('/email/verify', [VerificationController::class, 'show'])->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [VerificationController::class, 'verify'])->middleware(['signed'])->name('verification.verify');
+Route::post('/email/verification-notification', [VerificationController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.resend');
 
 
 Route::post('/login', [AuthController::class, 'login']);
@@ -38,7 +48,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
 
-Route::get('/test2', [PostController::class, 'index2'])->middleware('auth:sanctum');
+Route::get('/test2', [PostController::class, 'index2'])->middleware(['auth:sanctum', 'verified']);
 
 
 Route::get('/mail', function () {
@@ -60,7 +70,7 @@ Route::get('/mail', function () {
 })->middleware('auth:sanctum');
 
 
-Route::get('/messages', [MessageController::class,'index'])->name('messages.index')->middleware('auth:sanctum');
+Route::get('/messages', [MessageController::class, 'index'])->name('messages.index')->middleware('auth:sanctum');
 
 // Route::get('/posts/{post}', [PostController::class, 'index']);
 

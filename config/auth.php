@@ -67,6 +67,9 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+            // 驗證email
+            'table' => 'users',
+            'verify' => true,
         ],
 
         // 'users' => [
